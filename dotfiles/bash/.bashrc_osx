@@ -1,0 +1,23 @@
+### Source a number of different files ###
+# Source git prompt for OS X
+source /Applications/Xcode.app/Contents/Developer/usr/share/git-core/git-prompt.sh
+
+if [ -f `brew --prefix`/etc/bash_completion ]; then
+  source `brew --prefix`/etc/bash_completion
+fi
+
+if [ -f `brew --prefix`/etc/bash_completion.d/git-completion.bash ]; then
+  source `brew --prefix`/etc/bash_completion.d/git-completion.bash
+fi
+
+### Export enviroment variables ###
+# Terminal prompt
+export PS1='\[\e[36m\]\w \[\e[90m\]$(__git_ps1 "(%s) ")\[\e[0m\]'
+
+# ls colour output (OS X only)
+export LSCOLORS="ExGxBxDxCxEgEdxbxgxcxd"
+
+# Cheat function
+function cheat() {
+  curl cht.sh/$1
+}

@@ -1,0 +1,5 @@
+export LSYNCD_SOURCE_DIR="/path/local/dir"
+export LSYNCD_TARGET_DIR="/path/remote/dir"
+export LSYNCD_INSTANCE_NAME="aws-instance-name"
+export LSYNCD_AWS_PROFILE="aws-profile-name"
+export LSYNCD_KEY_PATH="path-to-ssh-key"

@@ -1,0 +1,24 @@
+[user]
+	name = Kostas Evangelou
+
+[core]
+	editor = vim
+
+[alias]
+	a = "add"
+	b = "branch"
+	c = "commit"
+	caen = "commit --amend --no-edit"
+	ch = "checkout"
+	d = "diff"
+	dc = "diff --cached"
+	l = "log"
+	lol = "log --oneline --graph"
+	p = "push"
+	s = "status"
+
+[pull]
+	rebase = true
+
+[log]
+	decorate = short
