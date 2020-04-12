@@ -11,30 +11,53 @@ if [[ $1 = "ubuntu" ]]; then
     sudo add-apt-repository ppa:jonathonf/vim &&
     sudo apt-get -q install \
       stow \
-      tmux rxvt-unicode-256color \
+      tmux \
+      rxvt-unicode-256color \
       vim \
       git \
-      fonts-roboto \
       tree shellcheck \
       jq libxml2-utils \
-      lsyncd
-
+      lsyncd \
+      fonts-roboto
   # Disable certain shortcuts
   gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-left "[]"
   gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-right "[]"
   gsettings set org.gnome.desktop.wm.keybindings panel-main-menu "[]" # disable Alt+F1
-
 elif [[ $1 = "arch" ]]; then
-  :
+  if [[ $(cat /etc/*release | head -1 | grep -i arch) ]]; then
+    echo "Installing Arch packages"
+    sudo pacman -S --noconfirm \
+      stow \
+      xclip \
+      tmux \
+      rxvt-unicode \
+      vim \
+      git \
+      tree \
+      shellcheck \
+      jq libxml2 \
+      code \
+      pyenv
+    # git clone https://aur.archlinux.org/yay.git &&
+    #  cd yay && makepkg -si
+    yay -S --noconfirm \
+      cheat \
+      lsyncd \
+      urxvt-perls urxvt-fullscreen urxvt-resize-font-git \
+      ttf-google-fonts-typewolf
+  else
+    continue
+  fi
 else
   echo "Distro ${1} not supported. Exiting..."
   exit 1
 fi
-# install vscode
-# install perl scripts
+
+# Apply Xresources
+xrdb ~/.Xresources
 
 # Tmux plugin manager
-# git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm || (cd ~/.tmux/plugins/tpm ; git pull)
 
 ### Symlink config
 # Dotfiles
@@ -44,7 +67,7 @@ do
 done
 
 # Scripts
-stow -v -R -t "${HOME}/scripts" scripts
+mkdir "${HOME}/scripts" && stow -v -R -t "${HOME}/scripts" scripts
 
 # VS Code
 if [[ "$OSTYPE" == "linux-gnu" ]]; then
@@ -52,3 +75,7 @@ if [[ "$OSTYPE" == "linux-gnu" ]]; then
 elif [[ "$OSTYPE" == "darwin"* ]]; then
     stow -v -R -d config -t "${HOME}/Library/Application Support/Code/User" vscode
 fi
+
+# Cheat
+mkdir -p ~/.config/cheat/cheatsheets/personal
+stow -v -R -d config -t "${HOME}/.config/cheat" cheat
