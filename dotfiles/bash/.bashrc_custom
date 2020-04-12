@@ -11,7 +11,10 @@ fi
 
 # OS specific
 if [[ "$OSTYPE" == "linux-gnu" ]]; then
-  :
+  if [[ -d /usr/share/git/completion ]]; then
+    source /usr/share/git/completion/git-completion.bash
+    source /usr/share/git/completion/git-prompt.sh
+  fi
 elif [[ "$OSTYPE" == "darwin"* ]]; then
   source ~/.bashrc_osx
 fi
@@ -35,6 +38,13 @@ export EDITOR=vim
 export PYTHONDONTWRITEBYTECODE=1
 
 ### Autocompletion
+# fzf autocompletion
+source /usr/share/fzf/key-bindings.bash
+source /usr/share/fzf/completion.bash
+
+# Cheat fzf autocompletion
+export CHEAT_USE_FZF=true
+
 #AWS autocompletion
 aws_path="$(which aws_completer)"
 
