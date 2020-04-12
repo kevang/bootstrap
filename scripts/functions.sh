@@ -12,7 +12,7 @@ fd() {
   fi
 }
 
-# Fuzzy find directory in $/dev directory && cd
+# Fuzzy find directory in ~/dev directory && cd
 dev() {
   local base
   base="${HOME}/dev"
