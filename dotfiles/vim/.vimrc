@@ -1,5 +1,8 @@
 "space bar as leader key
-let mapleader=" "
+let mapleader = "\<Space>"
+
+"show command
+set showcmd
 
 "syntax coloring
 filetype plugin indent on
@@ -72,5 +75,10 @@ let g:ale_sign_column_always = 1
 
 "tcomment
 Plug 'tomtom/tcomment_vim'
+
+"vimwiki
+Plug 'vimwiki/vimwiki'
+let g:vimwiki_list = [{'path': '~/vimwiki/',
+                      \ 'syntax': 'markdown', 'ext': '.md'}]
 
 call plug#end()

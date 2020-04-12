@@ -6,3 +6,6 @@ echo "source ~/.bashrc_custom" >> ~/.bashrc
 
 ## Tmux plugins
 Press `prefix` + <kbd>I</kbd> (capital i, as in **I**nstall)
+
+## Vim plugins
+Run `:PlugInstall` to install plugins
