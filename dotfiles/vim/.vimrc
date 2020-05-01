@@ -81,4 +81,8 @@ Plug 'vimwiki/vimwiki'
 let g:vimwiki_list = [{'path': '~/vimwiki/',
                       \ 'syntax': 'markdown', 'ext': '.md'}]
 
+"instant markdown
+Plug 'suan/vim-instant-markdown', {'for': 'markdown'}
+let g:instant_markdown_autostart = 0
+
 call plug#end()
