@@ -16,6 +16,9 @@ alias tmuxa="tmux attach"
 alias tmuxd="tmux detach"
 alias tn="tmux neww 2> /dev/null || tmux"
 
+# Vim
+alias vw='vim -c VimwikiIndex'
+
 # Kubernetes
 alias kube='kubectl'
 alias k='kubectl'
