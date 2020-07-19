@@ -15,6 +15,7 @@ set clipboard=unnamedplus
 set incsearch
 
 "case-sensitive search if it contains an uppercase char
+set ignorecase
 set smartcase
 
 "undo!
@@ -64,6 +65,7 @@ let g:lightline = {
 
 "fzf
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
 
 "ale
 Plug 'dense-analysis/ale'
@@ -86,3 +88,8 @@ Plug 'suan/vim-instant-markdown', {'for': 'markdown'}
 let g:instant_markdown_autostart = 0
 
 call plug#end()
+
+"fzf mappings
+nmap <Leader>t :Files<CR>
+nmap <Leader>r :History:<CR>
+nmap <Leader>s :History/<CR>

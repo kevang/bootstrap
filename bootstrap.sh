@@ -33,6 +33,7 @@ elif [[ $1 = "arch" ]]; then
       rxvt-unicode \
       vim \
       git \
+      fd \
       tree \
       shellcheck \
       jq libxml2 \
@@ -45,8 +46,6 @@ elif [[ $1 = "arch" ]]; then
       lsyncd \
       urxvt-perls urxvt-fullscreen urxvt-resize-font-git \
       ttf-google-fonts-typewolf
-  else
-    continue
   fi
 else
   echo "Distro ${1} not supported. Exiting..."
@@ -63,11 +62,11 @@ git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm || (cd ~/.tmux
 # Dotfiles
 for dir in dotfiles/*/
 do
-  stow -v -R -d dotfiles -t "${HOME}" $(basename $dir)
+  stow -v -R -d dotfiles -t "${HOME}" $(basename "$dir")
 done
 
 # Scripts
-mkdir "${HOME}/scripts" && stow -v -R -t "${HOME}/scripts" scripts
+mkdir -p "${HOME}/scripts" && stow -v -R -t "${HOME}/scripts" scripts
 
 # VS Code
 if [[ "$OSTYPE" == "linux-gnu" ]]; then

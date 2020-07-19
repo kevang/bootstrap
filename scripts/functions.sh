@@ -1,6 +1,6 @@
 ###Navigation
 # Fuzzy finding of child directory && cd
-fd() {
+fdd() {
   local base dir dest
   base="${1}"
   dir="$(find $base/* -maxdepth 0 -type d -print 2> /dev/null | sed 's!.*/!!' | sort -r | fzf-tmux +m)"
@@ -17,7 +17,7 @@ dev() {
   local base
   base="${HOME}/dev"
 
-  fd "$base"
+  fdd "$base"
   tmux rename-window "$(basename $(pwd))"
 }
 
