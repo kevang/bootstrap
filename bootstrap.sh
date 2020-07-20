@@ -35,6 +35,8 @@ elif [[ $1 = "arch" ]]; then
       git \
       fd \
       tree \
+      ncdu \
+      bat \
       shellcheck \
       jq libxml2 \
       code \
@@ -43,9 +45,10 @@ elif [[ $1 = "arch" ]]; then
     #  cd yay && makepkg -si
     yay -S --noconfirm \
       cheat \
+      git-delta \
       lsyncd \
       urxvt-perls urxvt-fullscreen urxvt-resize-font-git \
-      ttf-google-fonts-typewolf
+      ttf-roboto-mono
   fi
 else
   echo "Distro ${1} not supported. Exiting..."

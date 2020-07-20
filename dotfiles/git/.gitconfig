@@ -3,6 +3,10 @@
 
 [core]
 	editor = vim
+	pager = delta
+
+[delta]
+        line-numbers = true
 
 [alias]
 	a = "add"
