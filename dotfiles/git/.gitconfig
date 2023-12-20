@@ -13,12 +13,14 @@
 	b = "branch"
 	c = "commit"
 	caen = "commit --amend --no-edit"
-	ch = "checkout"
+	co = "checkout"
 	d = "diff"
 	dc = "diff --cached"
 	l = "log"
-	lol = "log --oneline --graph"
+	lp = "log -p -1"
+	lol = "log --graph --pretty=format:'%C(auto)%h%d%Creset %C(cyan)(%ci)%Creset %C(green)%cn%Creset %s'"
 	p = "push"
+	rh = "reset --hard"
 	s = "status"
 
 [pull]

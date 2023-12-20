@@ -8,4 +8,6 @@ echo "source ~/.bashrc_custom" >> ~/.bashrc
 Press `prefix` + <kbd>I</kbd> (capital i, as in **I**nstall)
 
 ## Vim plugins
+Note: Depricated, use NeoVim instead
+
 Run `:PlugInstall` to install plugins
