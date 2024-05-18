@@ -1,4 +1,4 @@
-### Source files
+# ### Source files
 # Aliases
 if [ -f "${HOME}/.bash_aliases" ]; then
   source "${HOME}/.bash_aliases"
@@ -32,7 +32,7 @@ export GIT_PS1_SHOWDIRTYSTATE=1
 export PS1='\[\033[01;34m\]\w\[\033[00m\] \[\033[01;32m\]$(__git_ps1 "(%s)")\[\033[00m\]\$ '
 
 # Text editing
-export EDITOR=vim
+export EDITOR=nvim
 
 # Python
 export PYTHONDONTWRITEBYTECODE=1
@@ -47,13 +47,9 @@ export FZF_CTRL_T_OPTS="--height=40% --preview='cat {}' --preview-window=right:6
 source /usr/share/fzf/key-bindings.bash
 source /usr/share/fzf/completion.bash
 
-# Cheat fzf autocompletion
-export CHEAT_USE_FZF=true
-
 #AWS autocompletion
-aws_path="$(which aws_completer)"
-
-if [[ -n "${aws_path}" ]]; then
+if command -v aws_completer &> /dev/null; then
+  aws_path="$(which aws_completer)"
   export PATH="$(dirname ${aws_path}):$PATH"
   complete -C "${aws_path}" aws
 fi

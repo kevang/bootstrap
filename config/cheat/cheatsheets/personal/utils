@@ -3,3 +3,21 @@ ncdu
 
 # fc-list - Installed fonts
 fc-list
+
+# figlet
+figlet
+
+# starship
+starship
+
+# prefetch
+prefetch
+
+# Neofetch/prefetch
+prefetch
+neofetch
+
+# pacman/yay
+sudo pacman -Rns $(pacman -Qtdq)  # Removed orphanded dependencies
+yay -Scc  # Removed oprhaned depdendencies
+pacman -Qi package_name  # Query package db and get package information

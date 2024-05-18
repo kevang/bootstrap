@@ -2,7 +2,9 @@
 -- See `:help vim.o`
 
 -- Set theme
-vim.cmd([[colorscheme everforest]])
+-- vim.cmd([[colorscheme everforest]])
+vim.cmd("colorscheme kanagawa-dragon")
+
 
 -- Set highlight on search
 vim.o.hlsearch = false

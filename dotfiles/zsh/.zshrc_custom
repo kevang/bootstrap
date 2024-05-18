@@ -1,0 +1,80 @@
+# ### Source files
+# Aliases
+if [ -f "${HOME}/.bash_aliases" ]; then
+  source "${HOME}/.bash_aliases"
+fi
+
+# Scripts
+if [ -f "${HOME}/scripts/functions.sh" ]; then
+  source "${HOME}/scripts/functions.sh"
+fi
+
+### Prompt
+function git_branch_name()
+{
+  branch=$(git symbolic-ref HEAD 2> /dev/null | awk 'BEGIN{FS="/"} {print $NF}')
+  if [[ $branch == "" ]];
+  then
+    :
+  else
+    echo '- ('$branch')'
+  fi
+}
+
+# Enable substitution in the prompt.
+setopt prompt_subst
+# Config for prompt
+export PS1='%B%F{74}%~ $%f%b '
+# export PROMPT='%B%F{240}%1d~%f%b $# '
+
+# Auto cd
+setopt AUTO_CD
+
+# Autocompletion
+autoload -U compinit && compinit
+_comp_options+=(globdots)
+
+### History
+export HISTFILE=${ZDOTDIR:-$HOME}/.zsh_history
+export HISTSIZE=10000000
+export SAVEHIST=$HISTSIZE
+setopt HIST_EXPIRE_DUPS_FIRST
+setopt HIST_IGNORE_DUPS
+setopt HIST_IGNORE_ALL_DUPS
+setopt HIST_SAVE_NO_DUPS
+setopt EXTENDED_HISTORY
+setopt SHARE_HISTORY
+setopt APPEND_HISTORY
+setopt INC_APPEND_HISTORY
+setopt HIST_VERIFY
+setopt HIST_IGNORE_SPACE
+setopt HIST_REDUCE_BLANKS
+
+### Vi MODE
+bindkey -v
+export KEYTIMEOUT=1
+
+# Text editing
+export EDITOR=nvim
+export VISUAL=nvim
+
+# Correction
+setopt CORRECT
+setopt CORRECT_ALL
+
+# Python
+export PYTHONDONTWRITEBYTECODE=1
+
+# fzf
+source /usr/share/fzf/completion.zsh
+source /usr/share/fzf/key-bindings.zsh
+export FZF_DEFAULT_COMMAND="fd --hidden --exclude .git --exclude node_modules"
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+export FZF_CTRL_T_OPTS="--height=40% --preview='cat {}' --preview-window=right:60%:wrap"
+
+# Zsh plugins
+source /usr/share/zsh/share/antigen.zsh
+# antigen theme romkatv/powerlevel10k
+antigen bundle zsh-users/zsh-autosuggestions
+antigen bundle zsh-users/zsh-syntax-highlighting
+antigen apply

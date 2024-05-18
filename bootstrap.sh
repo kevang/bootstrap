@@ -4,6 +4,54 @@ set -o errexit
 set -o errtrace
 set -o nounset
 
+### Script functions
+# Check if package is installed
+_isInstalledPacman() {
+    package="$1";
+    check="$(sudo pacman -Qs --color always "${package}" | grep "local" | grep "${package} ")";
+    if [ -n "${check}" ] ; then
+        echo 0; #'0' means 'true' in Bash
+        return; #true
+    fi;
+    echo 1; #'1' means 'false' in Bash
+    return; #false
+}
+
+# Install required packages
+_installPackagesPacman() {
+    toInstall=();
+    for pkg; do
+        if [[ $(_isInstalledPacman "${pkg}") == 0 ]]; then
+            continue;
+        fi;
+        toInstall+=("${pkg}");
+    done;
+    if [[ "${toInstall[@]}" == "" ]] ; then
+        echo "All pacman packages are already installed.";
+        return;
+    fi;
+    printf "Package not installed:\n%s\n" "${toInstall[@]}";
+    sudo pacman --noconfirm -S "${toInstall[@]}";
+}
+
+# Install Yay
+_installYay() {
+    if sudo pacman -Qs yay > /dev/null ; then
+        echo "yay is already installed!"
+    else
+        echo "yay is not installed. Will be installed now!"
+        _installPackagesPacman "base-devel"
+        SCRIPT=$(realpath "$0")
+        temp_path=$(dirname "$SCRIPT")
+        echo $temp_path
+        git clone https://aur.archlinux.org/yay-git.git ~/yay-git
+        cd ~/yay-git
+        makepkg -si
+        cd $temp_path
+        echo "yay has been installed successfully."
+    fi
+}
+
 ### Install packages
 if [[ $1 = "ubuntu" ]]; then
 	echo "Installing Ubuntu packages"
@@ -17,13 +65,12 @@ if [[ $1 = "ubuntu" ]]; then
 	gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-right "[]"
 	gsettings set org.gnome.desktop.wm.keybindings panel-main-menu "[]" # disable Alt+F1
 elif [[ $1 = "arch" ]]; then
-	if [[ $(cat /etc/*release | head -1 | grep -i arch) ]]; then
+	if [[ $(cat /etc/*release | head -2 | grep -i arch) ]]; then
+		sudo pacman -Sy
 		echo "Installing Arch packages"
-		packages=("bat" "code" "fd" "git" "httpie" "jq" "libxml2" "ncdu" "neovim" "pyenv" "rxvt-unicode" "shellcheck" "stow" "tmux" "tree" "ttf-jetbrains-mono-nerd" "vim" "wezterm" "xclip")
-		sudo pacman -S --noconfirm $(printf "%s " "${packages[@]}")
-		# git clone https://aur.archlinux.org/yay.git &&
-		#  cd yay && makepkg -si
-		aur_packages=("cheat" "git-delta" "urxvt-perls" "urxvt-fullscreen" "urxvt-resize-font-git" "ttf-roboto-mono-nerd")
+		packages=("bat" "fd" "figlet" "fzf" "git" "git-delta" "gum" "httpie" "jq" "libxml2" "ncdu" "neovim" "pyenv" "shellcheck" "stow" "tmux" "tree" "ttf-jetbrains-mono-nerd" "ttf-font-awesome" "unzip" "vim" "zsh")
+		_installPackagesPacman "${packages[@]}"
+		aur_packages=("antigen" "tmux-plugin-manager")
 		yay -S --noconfirm $(printf "%s " "${aur_packages[@]}")
 	fi
 else
@@ -32,13 +79,13 @@ else
 fi
 
 # Apply Xresources
-xrdb ~/.Xresources
+# xrdb ~/.Xresources
 
 # Tmux plugin manager
-git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm || (
-	cd ~/.tmux/plugins/tpm
-	git pull
-)
+# git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm || (
+# 	cd ~/.tmux/plugins/tpm
+# 	git pull
+# )
 
 ### Symlink config
 # Dotfiles
@@ -46,18 +93,9 @@ for dir in dotfiles/*/; do
 	stow -v -R -d dotfiles -t "${HOME}" $(basename "$dir")
 done
 
+# Config files
+stow -v -R -d config -t "${HOME}/.config/" .
+
 # Scripts
-mkdir -p "${HOME}/scripts" && stow -v -R -t "${HOME}/scripts" scripts
+mkdir -p "${HOME}/scripts" && stow -R -t "${HOME}/scripts" scripts
 
-# NeoVim
-stow -v -R -d config -t "${HOME}/.config/nvim" nvim
-
-# VS Code
-if [[ "$OSTYPE" == "linux-gnu" ]]; then
-	stow -v -R -d config -t "${HOME}/.config/Code/User" vscode
-elif [[ "$OSTYPE" == "darwin"* ]]; then
-	stow -v -R -d config -t "${HOME}/Library/Application Support/Code/User" vscode
-fi
-
-# Cheat
-stow -v -R -d config -t "${HOME}/.config/cheat" cheat

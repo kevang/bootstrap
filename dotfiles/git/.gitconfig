@@ -1,5 +1,6 @@
 [user]
 	name = Kostas Evangelou
+	email = evangelou.konstantinos@gmail.com
 
 [core]
 	editor = vim
@@ -11,7 +12,7 @@
 [alias]
 	a = "add"
 	b = "branch"
-	c = "commit"
+	c = "commit -m"
 	caen = "commit --amend --no-edit"
 	co = "checkout"
 	d = "diff"
@@ -28,3 +29,6 @@
 
 [log]
 	decorate = short
+
+[rerere]
+	enabled = true
