@@ -68,7 +68,7 @@ elif [[ $1 = "arch" ]]; then
 	if [[ $(cat /etc/*release | head -2 | grep -i arch) ]]; then
 		sudo pacman -Sy
 		echo "Installing Arch packages"
-		packages=("bat" "fd" "figlet" "fzf" "git" "git-delta" "gum" "httpie" "jq" "libxml2" "ncdu" "neovim" "pyenv" "shellcheck" "stow" "tmux" "tree" "ttf-jetbrains-mono-nerd" "ttf-font-awesome" "unzip" "vim" "zsh")
+		packages=("bat" "fd" "figlet" "fzf" "git" "git-delta" "gum" "httpie" "jq" "libxml2" "ncdu" "neovim" "eza" "pyenv" "python-pipenv" "python-pipx" "python-poetry" "shellcheck" "stow" "tmux" "tree" "ttf-jetbrains-mono-nerd" "ttf-font-awesome" "unzip" "vim" "zsh")
 		_installPackagesPacman "${packages[@]}"
 		aur_packages=("antigen" "tmux-plugin-manager")
 		yay -S --noconfirm $(printf "%s " "${aur_packages[@]}")
@@ -77,6 +77,8 @@ else
 	echo "Distro ${1} not supported. Exiting..."
 	exit 1
 fi
+
+# pipx ensurepath
 
 # Apply Xresources
 # xrdb ~/.Xresources
