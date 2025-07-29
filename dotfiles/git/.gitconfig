@@ -23,6 +23,7 @@
 	p = "push"
 	rh = "reset --hard"
 	s = "status"
+	sha = "rev-parse HEAD"
 
 [pull]
 	rebase = true

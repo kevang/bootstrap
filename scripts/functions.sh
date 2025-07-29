@@ -77,7 +77,7 @@ mkvenv() {
   fi
 
   echo "Creating venv ${VENV_HOME}/${venv_name}"
-  python3 -m venv "${VENV_HOME}/${venv_name}" && venv "${venv_name}"
+  python -m venv "${VENV_HOME}/${venv_name}" && venv "${venv_name}" && pip install --upgrade pip
 }
 
 rmvenv() {
@@ -91,3 +91,15 @@ rmvenv() {
   echo "Removing venv ${VENV_HOME}/${venv_name}"
   rm -r "${VENV_HOME}/${venv_name}"
 }
+
+ccat() {
+  if [[ "$OSTYPE" == "darwin"* ]]; then
+    pbcopy
+  elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
+    xclip -selection clipboard
+  else
+    echo "Unsupported OS: $OSTYPE" >&2
+    return 1
+  fi
+}
+

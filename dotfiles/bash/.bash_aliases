@@ -16,6 +16,7 @@ alias findh="find . -name "
 alias shutdown='systemctl poweroff'
 
 # Git
+alias g='git'
 alias gg='git grep'
 
 # Tmux

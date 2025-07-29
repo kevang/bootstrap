@@ -21,13 +21,6 @@ config.window_padding = {
 }
 
 -- Start tmux at start up
-config.default_prog = { 'tn' }
-
--- Scroll by page
-local act = wezterm.action
-config.keys = {
-  { key = 'PageUp', action = act.ScrollByPage(-0.5) },
-  { key = 'PageDown', action = act.ScrollByPage(0.5) },
-}
+-- config.default_prog = { 'tn' }
 
 return config
