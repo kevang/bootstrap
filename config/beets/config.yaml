@@ -1,0 +1,38 @@
+plugins: 
+  - fetchart 
+  - embedart
+  - lyrics 
+  - lastgenre
+  - the 
+  - duplicates
+  - edit
+  - info
+  - permissions
+
+
+directory: /home/adaris/data/media/music
+
+library: /home/adaris/db/beets/beetslibrary.db
+
+paths:
+    default: %the{$albumartist}/($year) $album/$track $title
+
+ui:
+    color: yes
+
+import:
+    incremental: yes
+    incremental_skip_later: yes
+    write: yes
+    move: no
+    autotag: yes
+    bell: yes
+    log: /home/adaris/db/beets/beet.log    
+    duplicate_action: skip
+
+original_date: yes
+
+per_disc_numbering: yes
+
+the:
+    a: no

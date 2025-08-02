@@ -20,7 +20,7 @@ elif [[ $1 = "arch" ]]; then
 	if [[ $(cat /etc/*release | head -2 | grep -i arch) ]]; then
 		sudo pacman -Sy
 		echo "Installing Arch packages"
-		packages=("bat" "fd" "figlet" "fzf" "git" "git-delta" "gum" "httpie" "jq" "libxml2" "ncdu" "neovim" "eza" "python-pipx" "shellcheck" "stow" "tmux" "tree" "ttf-jetbrains-mono-nerd" "ttf-font-awesome" "unzip" "uv" "vim" "zsh")
+		packages=("bat" "eza" "fd" "figlet" "fzf" "git" "git-delta" "gum" "jq" "libxml2" "ncdu" "neovim" "stow" "tealdeer" "tmux" "tree" "ttf-jetbrains-mono-nerd" "ttf-font-awesome" "unzip" "uv" "vim" "xh" "zsh")
 		_installPackagesPacman "${packages[@]}"
 		aur_packages=("antigen" "tmux-plugin-manager")
 		yay -S --noconfirm $(printf "%s " "${aur_packages[@]}")
@@ -43,7 +43,7 @@ for dir in dotfiles/*/; do
 done
 
 # Config files
-stow -v -R -d config -t "${HOME}/.config/" .
+stow -v -R --adopt -d config -t "${HOME}/.config/" .
 
 # Scripts
 mkdir -p "${HOME}/scripts" && stow -R -t "${HOME}/scripts" scripts
