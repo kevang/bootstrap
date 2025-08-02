@@ -77,7 +77,7 @@ mkvenv() {
   fi
 
   echo "Creating venv ${VENV_HOME}/${venv_name}"
-  python -m venv "${VENV_HOME}/${venv_name}" && venv "${venv_name}" && pip install --upgrade pip
+  uv venv "${VENV_HOME}/${venv_name}" && source "${VENV_HOME}/${venv_name}"/bin/activate && export UV_PROJECT_ENVIRONMENT="${VENV_HOME}/${venv_name}"
 }
 
 rmvenv() {

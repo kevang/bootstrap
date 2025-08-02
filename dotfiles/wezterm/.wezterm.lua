@@ -6,7 +6,7 @@ local config = wezterm.config_builder()
 config.color_scheme = 'Kanagawa Dragon (Gogh)'
 
 -- Fonts
-config.font = wezterm.font("FiraCode Nerd Font")
+config.font = wezterm.font("Noto Sans Mono" )
 config.font_size = 11.0
 
 -- Window opacitiy

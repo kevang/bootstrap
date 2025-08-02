@@ -4,8 +4,6 @@ set -o errexit
 set -o errtrace
 set -o nounset
 
-### Script functions
-# Check if package is installed
 ### Install packages
 if [[ $1 = "ubuntu" ]]; then
 	echo "Installing Ubuntu packages"
@@ -13,7 +11,6 @@ if [[ $1 = "ubuntu" ]]; then
 	sudo apt-get -q update &&
 		sudo add-apt-repository ppa:jonathonf/vim &&
 		sudo apt-get -q install $(printf "%s " "${packages[@]}")
-	# lsyncd
 	# Disable certain shortcuts
 	gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-left "[]"
 	gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-right "[]"
@@ -23,7 +20,7 @@ elif [[ $1 = "arch" ]]; then
 	if [[ $(cat /etc/*release | head -2 | grep -i arch) ]]; then
 		sudo pacman -Sy
 		echo "Installing Arch packages"
-		packages=("bat" "fd" "figlet" "fzf" "git" "git-delta" "gum" "httpie" "jq" "libxml2" "ncdu" "neovim" "eza" "pyenv" "python-pipenv" "python-pipx" "python-poetry" "shellcheck" "stow" "tmux" "tree" "ttf-jetbrains-mono-nerd" "ttf-font-awesome" "unzip" "vim" "zsh")
+		packages=("bat" "fd" "figlet" "fzf" "git" "git-delta" "gum" "httpie" "jq" "libxml2" "ncdu" "neovim" "eza" "python-pipx" "shellcheck" "stow" "tmux" "tree" "ttf-jetbrains-mono-nerd" "ttf-font-awesome" "unzip" "uv" "vim" "zsh")
 		_installPackagesPacman "${packages[@]}"
 		aur_packages=("antigen" "tmux-plugin-manager")
 		yay -S --noconfirm $(printf "%s " "${aur_packages[@]}")
@@ -32,8 +29,6 @@ else
 	echo "Distro ${1} not supported. Exiting..."
 	exit 1
 fi
-
-# pipx ensurepath
 
 # Tmux plugin manager
 # git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm || (
