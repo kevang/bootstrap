@@ -1,18 +1,16 @@
 # Bash
 alias ..="cd .."
 alias ...="cd ../.."
-alias cd..="cd .."
 alias cd...="cd ../.."
-#alias ls='gls --color=auto --group-directories-first'
-# alias ls='ls --color -h --group-directories-first --format=horizontal'
-# alias ll='ls -lha'
-alias ls='eza --icons'
-alias ll='eza -la --icons'
-alias lt='eza --tree --level=1 --icons'
+alias cd..="cd .."
 alias cp='cp -v'
-alias mv='mv -v'
-alias grep='grep --color=auto'
 alias findh="find . -name "
+alias grep='rg --hidden'
+# alias grep='grep --color=auto'
+alias ll='eza -la --icons'
+alias ls='eza --icons'
+alias lt='eza --tree --level=1 --icons'
+alias mv='mv -v'
 alias shutdown='systemctl poweroff'
 
 # Git

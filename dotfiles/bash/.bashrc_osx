@@ -16,8 +16,3 @@ export PS1='\[\e[36m\]\w \[\e[90m\]$(__git_ps1 "(%s) ")\[\e[0m\]'
 
 # ls colour output (OS X only)
 export LSCOLORS="ExGxBxDxCxEgEdxbxgxcxd"
-
-# Cheat function
-function cheat() {
-  curl cht.sh/$1
-}

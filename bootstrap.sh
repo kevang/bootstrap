@@ -20,9 +20,9 @@ elif [[ $1 = "arch" ]]; then
 	if [[ $(cat /etc/*release | head -2 | grep -i arch) ]]; then
 		sudo pacman -Sy
 		echo "Installing Arch packages"
-		packages=("bat" "eza" "fd" "figlet" "fzf" "git" "git-delta" "gum" "jq" "libxml2" "ncdu" "neovim" "stow" "tealdeer" "tmux" "tree" "ttf-jetbrains-mono-nerd" "ttf-font-awesome" "unzip" "uv" "vim" "xh" "zsh")
+		packages=("bat" "eza" "fd" "figlet" "fzf" "git" "git-delta" "gum" "jq" "libxml2" "ncdu" "neovim" "ripgrep" "stow" "tealdeer" "tmux" "tree" "ttf-jetbrains-mono-nerd" "ttf-font-awesome" "unzip" "uv" "vim" "xh" "zsh")
 		_installPackagesPacman "${packages[@]}"
-		aur_packages=("antigen" "tmux-plugin-manager")
+		aur_packages=("antigen" "pet-bin" "tmux-plugin-manager")
 		yay -S --noconfirm $(printf "%s " "${aur_packages[@]}")
 	fi
 else
