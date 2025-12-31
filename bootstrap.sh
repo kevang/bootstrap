@@ -23,6 +23,7 @@ elif [[ $1 = "arch" ]]; then
 		packages=("bat" "eza" "fd" "figlet" "fzf" "git" "git-delta" "gum" "jq" "libxml2" "ncdu" "neovim" "ripgrep" "stow" "tealdeer" "tmux" "tree" "ttf-jetbrains-mono-nerd" "ttf-font-awesome" "unzip" "uv" "vim" "xh" "zsh")
 		_installPackagesPacman "${packages[@]}"
 		aur_packages=("antigen" "pet-bin" "tmux-plugin-manager")
+		_installYay
 		yay -S --noconfirm $(printf "%s " "${aur_packages[@]}")
 	fi
 else

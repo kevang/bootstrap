@@ -1,13 +1,14 @@
 plugins: 
-  - fetchart 
-  - embedart
-  - lyrics 
-  - lastgenre
-  - the 
   - duplicates
   - edit
+  - embedart
+  - fetchart
   - info
+  - lastgenre
+  - lyrics
+  - musicbrainz
   - permissions
+  - the
 
 
 directory: /home/adaris/data/media/music
@@ -33,6 +34,20 @@ import:
 original_date: yes
 
 per_disc_numbering: yes
+
+musicbrainz:
+    host: musicbrainz.org
+    https: no
+    ratelimit: 1
+    ratelimit_interval: 1.0
+    search_limit: 5
+    external_ids:
+        discogs: yes
+        bandcamp: yes
+        spotify: no
+        deezer: no
+        beatport: no
+        tidal: no
 
 the:
     a: no
