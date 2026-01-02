@@ -35,3 +35,7 @@ alias k='kubectl'
 
 # SSH
 alias ssh_hosts="grep -w -i -h Host ~/.ssh/*config | sed 's/Host//' | sort"
+
+# tldr
+alias tl="tldr --list | grep \"^bat|^btm|^docker|^eza|^fc-list|^fd|^fzf|^git|^jq|^kubectl|^ncdu|^ripgrep|^tmux|^tree|^uv|^vim|^xh|^yay\" | sort -r | fzf --preview 'tldr {} --color always' | xargs tldr"
+alias tll="tldr --list | grep \"^bat$|^btm$|^docker$|^docker-compose$|^eza$|^fc-list$|^fd$|^fzf$|^git$|^jq$|^kubectl$|^ncdu$|^ripgrep$|^tmux$|^tree$|^uv$|^xh$|^yay$\" | sort -r | fzf --preview 'tldr {} --color always' | xargs tldr"

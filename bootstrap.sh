@@ -16,13 +16,13 @@ if [[ $1 = "ubuntu" ]]; then
 	gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-right "[]"
 	gsettings set org.gnome.desktop.wm.keybindings panel-main-menu "[]" # disable Alt+F1
 elif [[ $1 = "arch" ]]; then
-	source "./scripts/arch.sh"
+	source "./scripts/arch/install_packages.sh"
 	if [[ $(cat /etc/*release | head -2 | grep -i arch) ]]; then
 		sudo pacman -Sy
 		echo "Installing Arch packages"
-		packages=("bat" "eza" "fd" "figlet" "fzf" "git" "git-delta" "gum" "jq" "libxml2" "ncdu" "neovim" "ripgrep" "stow" "tealdeer" "tmux" "tree" "ttf-jetbrains-mono-nerd" "ttf-font-awesome" "unzip" "uv" "vim" "xh" "zsh")
+		packages=("bat" "eza" "fd" "figlet" "fzf" "git" "git-delta" "gum" "jq" "libxml2" "ncdu" "neovim" "ripgrep" "stow" "tealdeer" "tmux" "tree" "ttf-jetbrains-mono-nerd" "ttf-font-awesome" "unzip" "uv" "xh" "zsh")
 		_installPackagesPacman "${packages[@]}"
-		aur_packages=("antigen" "pet-bin" "tmux-plugin-manager")
+		aur_packages=("antigen" "bottom" "tealdeer" "tmux-plugin-manager")
 		_installYay
 		yay -S --noconfirm $(printf "%s " "${aur_packages[@]}")
 	fi

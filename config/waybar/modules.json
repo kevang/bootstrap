@@ -1,0 +1,203 @@
+{
+    "hyprland/workspaces": {
+        "on-click": "activate",
+        "active-only": false,
+        "all-outputs": true,
+        "format": "{icon}   ({id})",
+        "format-icons": {
+           "1": "",
+           "2": "",
+           "3": "",
+           "4": "",
+           "5": "󱜏",
+           "6": "",
+           "empty": ""
+        },
+        "persistent-workspaces": {
+            "*": 6
+        }       
+    },
+
+    "wlr/taskbar": {
+        "format": "{icon}",
+        "icon-size": 18,
+        "tooltip-format": "{title}",
+        "on-click": "activate",
+        "on-click-middle": "close",
+        "ignore-list": [
+           "Alacritty"
+        ],
+        "app_ids-mapping": {
+            "firefoxdeveloperedition": "firefox-developer-edition"
+        },
+        "rewrite": {
+            "Firefox Web Browser": "Firefox",
+            "Foot Server": "Terminal"
+        }
+    },
+
+    "hyprland/window": {
+        "separate-outputs": true
+    },
+
+    "custom/empty": {
+        "format": ""
+    },
+
+    "custom/updates": {
+        "format": "   {}",
+        "tooltip-format": "{}",
+        "escape": true,
+        "return-type": "json",
+        "exec": "~/scripts/arch/available_updates.sh",
+        "restart-interval": 60,
+        "on-click": "wezterm -e ~/scripts/arch/install_updates.sh",
+        "on-click-right": "wezterm -e pacseek",
+        "tooltip": false
+    },
+
+    "custom/filemanager": {
+        "format": "",
+        "on-click": "thunar",
+        "tooltip": false
+    },
+
+    "custom/browser": {
+        "format": "",
+        "on-click": "vivaldi",
+        "tooltip": false
+    },    
+
+    "custom/chatgpt": {
+        "format": " ",
+        "on-click": "chromium --app=https://chat.openai.com",
+        "tooltip": false
+    },
+
+    "custom/appmenu": {
+        "format": "Apps",
+        "on-click": "sleep 0.2;rofi -show drun -replace",
+        "on-click-right": "~/scripts/hypr/keybindings.sh",
+        "tooltip": false
+    },
+
+    "custom/exit": {
+        "format": "",
+        "on-click": "wlogout",
+        "tooltip": false
+    },
+
+    "tray": {
+        "icon-size": 21,
+        "spacing": 10
+    },
+
+    "clock": {
+        "format": "{:%H:%M %a}",
+        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+        "format-alt": "{:%Y-%m-%d}"
+    },
+
+    "cpu": {
+        "format": "/ C {usage}% ",
+        "on-click": "alacritty -e htop"
+    },
+
+    "memory": {
+        "format": "/ M {}% ",
+        "on-click": "alacritty -e htop"
+    },
+
+    "disk": {
+        "interval": 30,
+        "format": "D {percentage_used}% ",
+        "path": "/",
+        "on-click": "alacritty -e htop"
+    }, 
+
+    "hyprland/language": {
+        "format": "/ K {short}"
+    },
+
+    "group/hardware": {
+        "orientation": "horizontal",
+        "modules": [
+            "disk",
+            "cpu",
+            "memory",
+            "hyprland/language"
+        ]
+    },
+    
+    "group/links": {
+        "orientation": "horizontal",
+        "modules": [
+            "custom/chatgpt",
+            "custom/browser",
+            "custom/filemanager"
+        ]
+    },
+
+    "network": {
+        "format": "{ifname}",
+        "format-wifi": "   {signalStrength}%",
+        "format-ethernet": "  {ifname}",
+        "format-disconnected": "Disconnected",
+        "tooltip-format": " {ifname} via {gwaddri}",
+        "tooltip-format-wifi": "  {ifname} @ {essid}\nIP: {ipaddr}\nStrength: {signalStrength}%\nFreq: {frequency}MHz\nUp: {bandwidthUpBits} Down: {bandwidthDownBits}",
+        "tooltip-format-ethernet": " {ifname}\nIP: {ipaddr}\n up: {bandwidthUpBits} down: {bandwidthDownBits}",
+        "tooltip-format-disconnected": "Disconnected",
+        "max-length": 50,
+        "on-click": "nm-connection-editor"
+    },
+
+    "battery": {
+        "states": {
+            "warning": 30,
+            "critical": 15
+        },
+        "format": "{icon}   {capacity}%",
+        "format-charging": "  {capacity}%",
+        "format-plugged": "  {capacity}%",
+        "format-alt": "{icon}  {time}",
+        "format-icons": [" ", " ", " ", " ", " "]
+    },
+
+    "pulseaudio": {
+        "format": "{icon}   {volume}%",
+        "format-bluetooth": "{volume}%  {icon} {format_source}",
+        "format-bluetooth-muted": " {icon} {format_source}",
+        "format-muted": " {format_source}",
+        "format-source": "{volume}% ",
+        "format-source-muted": "",
+        "format-icons": {
+            "headphone": " ",
+            "hands-free": " ",
+            "headset": " ",
+            "phone": " ",
+            "portable": " ",
+            "car": " ",
+            "default": [" ", " ", " "]
+        },
+        "on-click": "pavucontrol"
+    },
+
+    "bluetooth": {
+        "format": " {status}",
+        "format-disabled": "",
+        "format-off": "",
+        "interval": 30,
+        "on-click": "blueman-manager",
+        "format-no-controller": ""
+    },
+
+    "idle_inhibitor": {
+        "format": "{icon}",
+        "tooltip": true,
+        "format-icons":{
+            "activated": "",
+            "deactivated": ""
+        },
+        "on-click-right": "hyprlock"        
+    }
+}
