@@ -8,7 +8,6 @@ vim.keymap.set("n", "<leader>w", ":BufferLinePickClose<cr>", { desc = 'Close cur
 return {
   {
     "akinsho/bufferline.nvim",
-    dependencies = "nvim-tree/nvim-web-devicons",
     options = {
         hover = {
             enabled = true,
