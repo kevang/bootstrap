@@ -36,3 +36,18 @@ end, { desc = "Recent files" })
 vim.keymap.set("n", ";", function()
     require("fzf-lua").command_history()
 end, { noremap = true, silent = true })
+
+vim.keymap.set("n", "<leader>bv", function()
+    require("fzf-lua").buffers({ winopts = { split = "vsplit" } })
+end, { desc = "Buffer → vertical split" })
+
+vim.keymap.set("n", "<leader>bs", function()
+    require("fzf-lua").buffers({ winopts = { split = "split" } })
+end, { desc = "Buffer → horizontal split" })
+
+vim.keymap.set("n", "<leader>q", "<C-w>q", { desc = "Close window" })
+
+vim.keymap.set("n", "<leader>wq", function()
+    vim.cmd("write")
+    vim.cmd("close")
+end, { desc = "Save buffer and close window" })

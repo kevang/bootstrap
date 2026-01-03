@@ -17,16 +17,10 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
-    -- Detect tabstop and shiftwidth automatically
-    "tpope/vim-sleuth",
-
-    -- Useful plugin to show you pending keybinds.
-    { "folke/which-key.nvim", opts = {} },
+    { import = "plugins" },
 
     -- "gc" to comment visual regions/lines
     { "numToStr/Comment.nvim", opts = {} },
-
-    { import = "plugins" },
 }, {})
 
 require("config.options")

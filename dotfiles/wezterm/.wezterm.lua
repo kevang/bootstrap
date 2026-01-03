@@ -21,6 +21,10 @@ config.window_padding = {
 }
 
 -- Start tmux at start up
--- config.default_prog = { 'tn' }
+config.default_prog = {
+    "sh",
+    "-lc",
+    "tmux neww 2>/dev/null || tmux",
+}
 
 return config

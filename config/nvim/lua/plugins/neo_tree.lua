@@ -7,7 +7,7 @@ return {
     },
     cmd = "Neotree",
     keys = {
-        { "<leader>e", "<Cmd>Neotree toggle<CR>", desc = "Explorer (Neo-tree)" },
+        { "<leader>e", "<Cmd>Neotree toggle<CR>", desc = "[E]xplorer" },
     },
     opts = {
         close_if_last_window = true, -- Close Neo-tree if it is the last window left in the tab
