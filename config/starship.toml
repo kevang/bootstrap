@@ -1,0 +1,19 @@
+format = "$directory$git_branch$git_status$character"
+
+[directory]
+style = "bold fg:blue"
+truncation_length = 0
+truncate_to_repo = false
+
+[git_branch]
+format = "[\\($branch\\)](bold fg:green)"
+
+[git_status]
+format = "$modified$staged$stashed"
+modified = "[*](bold fg:green)"
+staged   = "[+](bold fg:green)"
+stashed  = "[$](bold fg:green)"
+
+[character]
+success_symbol = "[\\$]()"
+error_symbol = "[\\$](fg:red)"
