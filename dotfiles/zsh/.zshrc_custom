@@ -1,4 +1,6 @@
-# ### Source files
+# Enable starship prompt
+eval "$(starship init zsh)"
+
 # Aliases
 if [ -f "${HOME}/.bash_aliases" ]; then
   source "${HOME}/.bash_aliases"
@@ -9,34 +11,38 @@ if [ -f "${HOME}/scripts/functions.sh" ]; then
   source "${HOME}/scripts/functions.sh"
 fi
 
-### Prompt
-function git_branch_name()
-{
-  branch=$(git symbolic-ref HEAD 2> /dev/null | awk 'BEGIN{FS="/"} {print $NF}')
-  if [[ $branch == "" ]];
-  then
-    :
-  else
-    echo '- ('$branch')'
-  fi
-}
+# Syntax highlighting
+source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
-# Enable substitution in the prompt.
+# Autosuggestions
+source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=240'
+bindkey '^l' autosuggest-accept
+
+# Vi mode
+ZVM_CURSOR_STYLE_ENABLED=false
+source /usr/share/zsh/plugins/zsh-vi-mode/zsh-vi-mode.zsh
+bindkey -M viins '\e[H' beginning-of-line
+bindkey -M viins '\e[F' end-of-line
+bindkey -M viins '\e[1~' beginning-of-line
+bindkey -M viins '\e[4~' end-of-line
+
+# Enable substitution in the prompt
 setopt prompt_subst
-# Config for prompt
-export PS1='%B%F{74}%~ $%f%b '
-# export PROMPT='%B%F{240}%1d~%f%b $# '
 
 # Auto cd
 setopt AUTO_CD
 
 # Autocompletion
 autoload -U compinit && compinit
-_comp_options+=(globdots)
 
-### History
+# Tab behaviour
+unsetopt menucomplete
+unsetopt automenu
+
+# History
 export HISTFILE=${ZDOTDIR:-$HOME}/.zsh_history
-export HISTSIZE=10000000
+export HISTSIZE=1000000
 export SAVEHIST=$HISTSIZE
 setopt HIST_EXPIRE_DUPS_FIRST
 setopt HIST_IGNORE_DUPS
@@ -50,17 +56,9 @@ setopt HIST_VERIFY
 setopt HIST_IGNORE_SPACE
 setopt HIST_REDUCE_BLANKS
 
-### Vi MODE
-bindkey -v
-export KEYTIMEOUT=1
-
 # Text editing
 export EDITOR=nvim
 export VISUAL=nvim
-
-# Correction
-setopt CORRECT
-setopt CORRECT_ALL
 
 # Python
 export PYTHONDONTWRITEBYTECODE=1
@@ -71,10 +69,12 @@ source /usr/share/fzf/key-bindings.zsh
 export FZF_DEFAULT_COMMAND="fd --hidden --exclude .git --exclude node_modules"
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_CTRL_T_OPTS="--height=40% --preview='cat {}' --preview-window=right:60%:wrap"
+export FZF_DEFAULT_OPTS="--height=40% --layout=reverse --border"
+export FZF_CTRL_R_OPTS="--preview 'echo {}' --preview-window down:3:hidden:wrap"
 
-# Zsh plugins
-source /usr/share/zsh/share/antigen.zsh
-# antigen theme romkatv/powerlevel10k
-antigen bundle zsh-users/zsh-autosuggestions
-antigen bundle zsh-users/zsh-syntax-highlighting
-antigen apply
+# tmux-aware Ctrl-hjkl
+if [[ -n "$TMUX" ]]; then
+  bindkey -M viins '^h' backward-char
+  bindkey -M viins '^l' forward-char
+  bindkey -M viins '^w' vi-cmd-mode
+fi

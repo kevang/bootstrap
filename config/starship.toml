@@ -1,0 +1,26 @@
+format = "$character$directory$git_branch$git_status$custom"
+
+[character]
+success_symbol = '[\[I\]]()'
+error_symbol = '[\[I\]]()'
+vimcmd_symbol = '[\[N\]](yellow)'
+
+[directory]
+style = "bold fg:blue"
+truncation_length = 0
+truncate_to_repo = false
+
+
+[git_branch]
+format = "[\\($branch\\)](bold fg:green)"
+
+[git_status]
+format = "$modified$staged$stashed"
+modified = "[*](bold fg:green)"
+staged   = "[+](bold fg:green)"
+stashed  = "[$](bold fg:green)"
+
+[custom.mark]
+command = "echo $ "
+when = "true"
+style = "bold white"
