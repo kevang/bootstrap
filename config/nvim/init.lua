@@ -26,9 +26,3 @@ require("lazy").setup({
 require("config.options")
 require("config.keymaps")
 require("config.autocmds")
-
-vim.api.nvim_create_autocmd("VimEnter", {
-    callback = vim.schedule_wrap(function()
-        vim.cmd("Neotree show")
-    end),
-})

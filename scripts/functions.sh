@@ -93,12 +93,14 @@ rmvenv() {
 }
 
 ccat() {
-  if [[ "$OSTYPE" == "darwin"* ]]; then
+  if command -v pbcopy >/dev/null; then
     pbcopy
-  elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
+  elif command -v wl-copy >/dev/null; then
+    wl-copy
+  elif command -v xclip >/dev/null; then
     xclip -selection clipboard
   else
-    echo "Unsupported OS: $OSTYPE" >&2
+    echo "No clipboard utility found (pbcopy, wl-copy, xclip)" >&2
     return 1
   fi
 }

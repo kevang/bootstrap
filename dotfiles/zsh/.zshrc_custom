@@ -12,12 +12,12 @@ if [ -f "${HOME}/scripts/functions.sh" ]; then
 fi
 
 # Syntax highlighting
-source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+# source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # Autosuggestions
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=240'
-bindkey '^l' autosuggest-accept
+bindkey '^[[C' autosuggest-accept
 
 # Vi mode
 ZVM_CURSOR_STYLE_ENABLED=false
@@ -34,11 +34,15 @@ setopt prompt_subst
 setopt AUTO_CD
 
 # Autocompletion
-autoload -U compinit && compinit
+autoload -Uz compinit && compinit
+zstyle ':completion:*' menu select
 
-# Tab behaviour
-unsetopt menucomplete
-unsetopt automenu
+# fzf tab completion
+source /usr/share/zsh/plugins/fzf-tab-git/fzf-tab.zsh
+zstyle ':fzf-tab:*' disabled-on files
+
+setopt AUTO_PARAM_SLASH
+setopt NO_MENU_COMPLETE
 
 # History
 export HISTFILE=${ZDOTDIR:-$HOME}/.zsh_history
@@ -64,17 +68,19 @@ export VISUAL=nvim
 export PYTHONDONTWRITEBYTECODE=1
 
 # fzf
-source /usr/share/fzf/completion.zsh
-source /usr/share/fzf/key-bindings.zsh
+function zvm_after_init() {
+  source /usr/share/fzf/completion.zsh
+  source /usr/share/fzf/key-bindings.zsh
+}
+
 export FZF_DEFAULT_COMMAND="fd --hidden --exclude .git --exclude node_modules"
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_CTRL_T_OPTS="--height=40% --preview='cat {}' --preview-window=right:60%:wrap"
 export FZF_DEFAULT_OPTS="--height=40% --layout=reverse --border"
 export FZF_CTRL_R_OPTS="--preview 'echo {}' --preview-window down:3:hidden:wrap"
 
-# tmux-aware Ctrl-hjkl
-if [[ -n "$TMUX" ]]; then
-  bindkey -M viins '^h' backward-char
-  bindkey -M viins '^l' forward-char
-  bindkey -M viins '^w' vi-cmd-mode
-fi
+# Make Ctrl+L clear screen properly
+bindkey '^L' clear-screen
+
+# Starship
+export STARSHIP_CONFIG=~/.config/starship/starship.toml

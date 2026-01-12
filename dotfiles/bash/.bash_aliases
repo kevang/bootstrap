@@ -8,8 +8,8 @@ alias findh="find . -name "
 alias grep='rg --hidden'
 # alias grep='grep --color=auto'
 alias ll='eza -la --icons'
-alias ls='eza --icons'
-alias lt='eza --tree --level=1 --icons'
+alias ls='eza --icons=always'
+alias lt='eza --tree --level=1 --icons=always'
 alias mv='mv -v'
 alias shutdown='systemctl poweroff'
 

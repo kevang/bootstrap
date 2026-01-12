@@ -3,7 +3,7 @@
 	email = evangelou.konstantinos@gmail.com
 
 [core]
-	editor = vim
+	editor = nvim
 	pager = delta
 
 [delta]

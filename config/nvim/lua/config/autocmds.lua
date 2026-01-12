@@ -1,8 +1,9 @@
--- Highlight yanked text
 vim.api.nvim_create_autocmd("TextYankPost", {
+    desc = "Highlight yanked text",
     callback = function()
-        if vim.v.event.operator == "y" then
-            vim.fn.setreg("+", vim.fn.getreg('"'))
-        end
+        vim.highlight.on_yank({
+            higroup = "IncSearch",
+            timeout = 150,
+        })
     end,
 })

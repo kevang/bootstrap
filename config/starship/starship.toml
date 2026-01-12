@@ -1,4 +1,4 @@
-format = "$character$directory$git_branch$git_status$custom"
+format = "$character$python$directory$git_branch$git_status$custom"
 
 [character]
 success_symbol = '[\[I\]]()'
@@ -10,9 +10,13 @@ style = "bold fg:blue"
 truncation_length = 0
 truncate_to_repo = false
 
-
 [git_branch]
 format = "[\\($branch\\)](bold fg:green)"
+
+[python]
+python_binary = [["uv", "run", "--no-python-downloads", "python"]]
+format = "[\\($version\\) ](fg:yellow)"
+style = "bold fg:yellow"
 
 [git_status]
 format = "$modified$staged$stashed"
