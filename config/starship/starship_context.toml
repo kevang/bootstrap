@@ -1,0 +1,106 @@
+# Context-only Starship config
+# Usage:
+#   STARSHIP_CONFIG=~/.config/starship/starship_context.toml starship prompt
+#
+# Or alias:
+#   alias ctx='STARSHIP_CONFIG=~/.config/starship/starship_context.toml starship explain'
+
+add_newline = false
+
+format = """
+$os\
+$directory\
+$git_branch\
+$git_status\
+$terraform\
+$docker_context\
+$kubernetes\
+$aws\
+$python\
+$go\
+$nodejs\
+$java\
+$rust
+"""
+
+# ----------------------
+# Core environment
+# ----------------------
+
+[os]
+disabled = false
+format = "[$symbol]($style) "
+style = "bold blue"
+
+[directory]
+truncation_length = 3
+truncate_to_repo = true
+format = "[$path]($style) "
+style = "bold cyan"
+
+# ----------------------
+# Git
+# ----------------------
+
+[git_branch]
+symbol = " "
+format = "[$symbol$branch]($style) "
+style = "bold purple"
+
+[git_status]
+format = "[$all_status]($style) "
+style = "red"
+
+# ----------------------
+# Infra / platform
+# ----------------------
+
+[terraform]
+symbol = "🧱 "
+format = "[$symbol$workspace]($style) "
+style = "bold 105"
+
+[docker_context]
+symbol = "🐳 "
+format = "[$symbol$context]($style) "
+style = "bold blue"
+
+[kubernetes]
+symbol = "☸ "
+format = "[$symbol$context]($style) "
+style = "bold cyan"
+
+[aws]
+symbol = "☁ "
+format = "[$symbol$profile]($style) "
+style = "bold yellow"
+
+# ----------------------
+# Languages
+# ----------------------
+
+[python]
+symbol = "🐍 "
+format = "[$symbol$version ($virtualenv)]($style) "
+style = "bold green"
+
+[go]
+symbol = "🐹 "
+# format = "[$symbol$version]($style) "
+style = "bold cyan"
+
+[nodejs]
+symbol = "⬢ "
+format = "[$symbol$version]($style) "
+style = "bold green"
+
+[java]
+symbol = "☕ "
+format = "[$symbol$version]($style) "
+style = "bold red"
+
+[rust]
+symbol = "🦀 "
+format = "[$symbol$version]($style) "
+style = "bold red"
+
