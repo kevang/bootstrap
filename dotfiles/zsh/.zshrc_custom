@@ -17,7 +17,6 @@ fi
 # Autosuggestions
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=240'
-bindkey '^[[C' autosuggest-accept
 
 # Vi mode
 ZVM_CURSOR_STYLE_ENABLED=false

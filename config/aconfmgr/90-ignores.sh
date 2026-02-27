@@ -1,0 +1,7 @@
+IgnorePath '/boot/*'
+IgnorePath '/etc/*'
+IgnorePath '/lost+found/*'
+IgnorePath '/opt/*'
+IgnorePath '/srv/*'
+IgnorePath '/usr/*'
+IgnorePath '/var/*'
