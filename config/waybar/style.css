@@ -142,14 +142,14 @@ window#waybar.empty #window {
  * ----------------------------------------------------- */
 
 #custom-filemanager, 
-#custom-chatgpt, 
+#custom-llm, 
 #custom-settings, 
 
 #custom-browser {
     margin-right:25px;
 }
 
-#custom-chatgpt {
+#custom-llm{
     margin-right: 12px;
     background-image: url("/home/adaris/.cache/assets/icons/ai-icon-20.png");
     background-repeat: no-repeat;

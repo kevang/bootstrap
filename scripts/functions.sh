@@ -57,36 +57,29 @@ export VENV_HOME="${HOME}/.venv"
 [[ -d ${VENV_HOME} ]] || mkdir "${VENV_HOME}"
 
 venv() {
-  if [ $# -eq 0 ]
-    then
-      venv_name="${PWD##*/}"
-    else
-      venv_name="$1"
-  fi
+  venv_name="${PWD##*/}"
 
   echo "Activating venv ${VENV_HOME}/${venv_name}"
   source "${VENV_HOME}/${venv_name}/bin/activate"
 }
 
 mkvenv() {
-  if [ $# -eq 0 ]
-    then
-      venv_name="${PWD##*/}"
-    else
-      venv_name="$1"
+  venv_name="${PWD##*/}"
+
+  if [ $# -ge 1 ]; then
+    python_version="$1"
+  else
+    python_version="3.11"
   fi
 
-  echo "Creating venv ${VENV_HOME}/${venv_name}"
-  uv venv "${VENV_HOME}/${venv_name}" && source "${VENV_HOME}/${venv_name}"/bin/activate && export UV_PROJECT_ENVIRONMENT="${VENV_HOME}/${venv_name}"
+  echo "Creating venv ${VENV_HOME}/${venv_name} with Python ${python_version}"
+  uv venv "${VENV_HOME}/${venv_name}" --python "${python_version}" && \
+    source "${VENV_HOME}/${venv_name}"/bin/activate && \
+    export UV_PROJECT_ENVIRONMENT="${VENV_HOME}/${venv_name}"
 }
 
 rmvenv() {
-  if [ $# -eq 0 ]
-    then
-      venv_name="${PWD##*/}"
-    else
-      venv_name="$1"
-  fi
+  venv_name="${PWD##*/}"
 
   echo "Removing venv ${VENV_HOME}/${venv_name}"
   rm -r "${VENV_HOME}/${venv_name}"
@@ -105,3 +98,5 @@ ccat() {
   fi
 }
 
+pip() { echo "Direct pip usage is disabled: use 'uv pip'"; return 1; }
+pip3() { echo "Direct pip usage is disabled: use 'uv pip'"; return 1; }

@@ -5,8 +5,8 @@ alias cd...="cd ../.."
 alias cd..="cd .."
 alias cp='cp -v'
 alias findh="find . -name "
-alias grep='rg --hidden'
-# alias grep='grep --color=auto'
+alias grep="rg --hidden --glob '!.git'"
+alias gg="rg --hidden --glob '!.git'"
 alias ll='eza -la --icons'
 alias ls='eza --icons=always'
 alias lt='eza --tree --level=1 --icons=always'
@@ -15,7 +15,9 @@ alias shutdown='systemctl poweroff'
 
 # Git
 alias g='git'
-alias gg='git grep'
+
+# Python
+alias python="python3"
 
 # Tmux
 alias tmuxa="tmux attach"
@@ -42,3 +44,5 @@ alias tll="tldr --list | grep \"^bat$|^btm$|^docker$|^docker-compose$|^eza$|^fc-
 
 # Starship
 alias ctx='STARSHIP_CONFIG=~/.config/starship/starship_context.toml starship explain'
+
+alias llm='echo "For the following, keep answers succinct and to the point. Do not ask follow-up questions. If I ask you to create or modify any code, do noy add comments to the code. Only show code that you updated/added." | ccat'

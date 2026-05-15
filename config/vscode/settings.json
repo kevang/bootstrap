@@ -1,0 +1,43 @@
+{
+    "editor.fontFamily": "JetBrains Mono, monospace",
+    "editor.inlayHints.enabled": "off",
+    "editor.matchBrackets": "never",
+    "editor.minimap.enabled": false,
+    "editor.occurrencesHighlight": "off",
+    "editor.rulers": [
+        88,
+    ],
+    "editor.renderLineHighlight": "none",
+    "editor.selectionHighlight": false,
+    "explorer.compactFolders": false,
+    "explorer.decorations.badges": false,
+    "explorer.decorations.colors": true,
+    "explorer.fileNesting.enabled": true,
+    "explorer.fileNesting.expand": false,
+    "explorer.sortOrder": "type",
+    "files.autoSave": "afterDelay",
+    "python-envs.globalSearchPaths": ["~/.venv"],
+    "python.languageServer": "Pylance",
+    "security.workspace.trust.untrustedFiles": "open",
+    "sqltools.highlightQuery": false,
+    "[sql]": {
+        "editor.defaultFormatter": "adpyke.vscode-sql-formatter"
+    },
+    "telemetry.telemetryLevel": "all",
+    "terminal.integrated.initialHint": false,
+    "vim.enable": true,
+    "vim.useSystemClipboard": true,
+    "window.openFoldersInNewWindow": "on",
+    "window.restoreWindows": "all",
+    "workbench.activityBar.compact": true,
+    "workbench.activityBar.location": "top",
+    "workbench.colorTheme": "Kanagawa Dragon",
+    "workbench.editor.decorations.badges": false,
+    "workbench.iconTheme": "material-icon-theme",
+    "workbench.startupEditor": "none",
+    "workbench.tree.indent": 16,
+    "workbench.tree.renderIndentGuides": "none",
+    "vs-kubernetes": {
+        "vscode-kubernetes.minikube-path-mac": "/Users/d630100/.vs-kubernetes/tools"
+    },
+}

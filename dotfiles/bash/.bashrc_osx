@@ -12,7 +12,7 @@ fi
 
 ### Export enviroment variables ###
 # Terminal prompt
-export PS1='\[\e[36m\]\w \[\e[90m\]$(__git_ps1 "(%s) ")\[\e[0m\]'
+# export PS1='\[\e[36m\]\w \[\e[90m\]$(__git_ps1 "(%s) ")\[\e[0m\]'
 
 # ls colour output (OS X only)
 export LSCOLORS="ExGxBxDxCxEgEdxbxgxcxd"

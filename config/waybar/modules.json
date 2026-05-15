@@ -68,9 +68,9 @@
         "tooltip": false
     },    
 
-    "custom/chatgpt": {
+    "custom/llm": {
         "format": " ",
-        "on-click": "chromium --app=https://chat.openai.com",
+        "on-click": "chromium --app=https://claude.ai",
         "tooltip": false
     },
 
@@ -132,7 +132,7 @@
     "group/links": {
         "orientation": "horizontal",
         "modules": [
-            "custom/chatgpt",
+            "custom/llm",
             "custom/browser",
             "custom/filemanager"
         ]

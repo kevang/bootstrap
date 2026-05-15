@@ -14,8 +14,7 @@ truncate_to_repo = false
 format = "[\\($branch\\)](bold fg:green)"
 
 [python]
-python_binary = [["uv", "run", "--no-python-downloads", "python"]]
-format = "[\\($version\\) ](fg:yellow)"
+format = "[\\($virtualenv\\)](fg:yellow)"
 style = "bold fg:yellow"
 
 [git_status]
